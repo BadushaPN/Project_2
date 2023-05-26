@@ -1,0 +1,21 @@
+List<String> images = [
+  "lib / assests / all_collections / accs1.webp",
+  " lib / assests / all_collections / accs2.jpeg ",
+  "      lib / assests / all_collections / accs3.jpeg ",
+  "     lib / assests / all_collections / accs4.webp ",
+  "lib / assests / all_collections / accs5.jpeg ",
+  "  lib / assests / all_collections / accs6.webp ",
+  "  lib / assests / all_collections / accs7.jpeg ",
+  "lib / assests / all_collections / aisl1.jpeg ",
+  "lib / assests / all_collections / aisl2.jpeg ",
+  "lib / assests / all_collections / aisl3.jpeg ",
+  "lib / assests / all_collections / aisl4.jpeg ",
+  "lib / assests / all_collections / bq2.webp",
+  "      lib / assests / all_collections / bq3.jpeg",
+  " lib / assests / all_collections / bq4.webp ",
+  " lib / assests / all_collections / tb1.webp",
+  "lib / assests / all_collections / tb2.webp ",
+  " lib / assests / all_collections / tb3.webp",
+  "  lib / assests / all_collections / tb4.webp",
+];
+List<String> names = ["Accessories", "Aisel", "Bouquet", "Table"];
