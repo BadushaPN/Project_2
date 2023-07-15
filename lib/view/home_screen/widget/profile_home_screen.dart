@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 
 class ProfileHomeScreen extends StatelessWidget {
-  const ProfileHomeScreen({
-    super.key,
-  });
+  Function() onTap;
+  ProfileHomeScreen({super.key, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
-    return const CircleAvatar(
-      backgroundImage: AssetImage("lib/assests/user.png"),
+    return GestureDetector(
+      onTap: onTap,
+      child: const CircleAvatar(
+        backgroundImage: AssetImage("lib/assests/user.png"),
+      ),
     );
   }
 }

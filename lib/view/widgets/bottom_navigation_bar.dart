@@ -58,12 +58,12 @@ class _BottomNavigatoionBarState extends State<BottomNavigatoionBar> {
                 iconColor: light,
               ),
               GButton(
-                icon: Icons.person,
+                icon: Icons.favorite,
                 text: 'Whishlist',
                 iconColor: light,
               ),
               GButton(
-                icon: Icons.person,
+                icon: Icons.shopping_cart,
                 text: 'Cart',
                 iconColor: light,
               ),

@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
           scaffoldBackgroundColor: myTheme),
       title: "FlowerBea",
       debugShowCheckedModeBanner: false,
-      home: SignupScreen(),
+      home: BottomNavigatoionBar(),
     );
   }
 }

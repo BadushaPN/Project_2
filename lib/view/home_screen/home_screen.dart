@@ -5,7 +5,10 @@ import 'package:project2/model/popularity/popularity.dart';
 import 'package:project2/utils/color.dart';
 import 'package:project2/view/home_screen/widget/home_catalogs.dart';
 import 'package:project2/view/home_screen/widget/indicator.dart';
+import 'package:project2/view/home_screen/widget/my_carousiler.dart';
 import 'package:project2/view/home_screen/widget/popularity.dart';
+import 'package:project2/view/location_screen.dart/location_screen.dart';
+import 'package:project2/view/profile_screen/profile_screen.dart';
 // import 'package:project2/utils/color.dart';
 import 'package:project2/view/widgets/large_text.dart';
 import 'package:project2/view/widgets/location_text_and_icon.dart';
@@ -48,7 +51,12 @@ class _HomeScreenState extends State<HomeScreen> {
                               SizedBox(
                                 width: size.width / 18,
                               ),
-                              const ProfileHomeScreen(),
+                              ProfileHomeScreen(
+                                onTap: () => Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => ProfileScreen())),
+                              ),
                               SizedBox(
                                 width: size.width / 34,
                               ),
@@ -63,28 +71,30 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                           LocationTextAndIcon(
                             size: size,
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        LocationSelectionPage()),
+                              );
+                            },
                           )
                         ],
                       ),
                     ],
                   ),
-                  offerBanner(size, _isSelected),
+                  // offerBanner(size, _isSelected),
+                  MyCarousel(),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: SizedBox(
                       width: size.width,
                       height: 100,
-                      // color: dark,
                       child: GridView.count(
-                        // padding: const EdgeInsets.symmetric(horizontal: 20),
-                        // mainAxisSpacing: 10,
                         crossAxisSpacing: 10,
-                        // physics: const ScrollPhysics(),
                         crossAxisCount: catalogs.length,
-                        // scrollDirection: Axis.horizontal,
-                        childAspectRatio: size.width / (size.height * 2),
-                        // shrinkWrap: true,
+                        childAspectRatio: size.width / (size.height / 1),
                         children: [
                           ...List.generate(
                             catalogs.length,
@@ -107,50 +117,50 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Column offerBanner(Size size, int _isSelected) {
-    return Column(
-      children: [
-        SizedBox(
-          height: size.height / 5,
-          child: PageView.builder(
-            onPageChanged: (index) {
-              setState(() {
-                _isSelected = index;
-              });
-            },
-            controller: PageController(viewportFraction: 0.8),
-            itemBuilder: (context, index) {
-              var banner = offersList[index];
-              var scale = _isSelected == index ? 1.0 : 0.8;
-              return TweenAnimationBuilder(
-                duration: const Duration(milliseconds: 100),
-                tween: Tween(begin: scale, end: scale),
-                curve: Curves.ease,
-                builder: (BuildContext context, double value, Widget? child) {
-                  return Transform.scale(
-                    scale: value,
-                    child: child,
-                  );
-                },
-                child: OfferItems(
-                  offerList: banner,
-                ),
-              );
-            },
-            itemCount: offersList.length,
-          ),
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ...List.generate(
-                offersList.length,
-                (index) =>
-                    Indicator(isActive: _isSelected == index ? true : false))
-            // Indicator(),
-          ],
-        )
-      ],
-    );
-  }
+//   Column offerBanner(Size size, int isSelected) {
+//     return Column(
+//       children: [
+//         SizedBox(
+//           height: size.height / 5,
+//           child: PageView.builder(
+//             onPageChanged: (index) {
+//               setState(() {
+//                 isSelected = index;
+//               });
+//             },
+//             controller: PageController(viewportFraction: 0.8),
+//             itemBuilder: (context, index) {
+//               var banner = offersList[index];
+//               var scale = isSelected == index ? 1.0 : 0.8;
+//               return TweenAnimationBuilder(
+//                 duration: const Duration(milliseconds: 100),
+//                 tween: Tween(begin: scale, end: scale),
+//                 curve: Curves.ease,
+//                 builder: (BuildContext context, double value, Widget? child) {
+//                   return Transform.scale(
+//                     scale: value,
+//                     child: child,
+//                   );
+//                 },
+//                 child: OfferItems(
+//                   offerList: banner,
+//                 ),
+//               );
+//             },
+//             itemCount: offersList.length,
+//           ),
+//         ),
+//         Row(
+//           mainAxisAlignment: MainAxisAlignment.center,
+//           children: [
+//             ...List.generate(
+//                 offersList.length,
+//                 (index) =>
+//                     Indicator(isActive: isSelected == index ? true : false))
+//             // Indicator(),
+//           ],
+//         )
+//       ],
+//     );
 }
+// }

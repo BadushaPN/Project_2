@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:project2/view/widgets/catalog_list.dart';
 import 'package:project2/view/widgets/large_text.dart';
 import 'package:project2/view/widgets/search_icon.dart';
 
 class HeadBar extends StatelessWidget {
-  const HeadBar({
-    super.key,
-  });
+  Function() onPress;
+  HeadBar({super.key, required this.onPress});
 
   @override
   Widget build(BuildContext context) {
@@ -28,11 +28,14 @@ class HeadBar extends StatelessWidget {
         Row(
           children: [
             IconButton(
-                onPressed: () {},
+                onPressed: onPress,
                 icon: const Icon(
-                  Icons.sort,
+                  Icons.filter_list,
                 )),
-            SearchIcon(onPressed: () {}),
+            // SearchIcon(onPressed: () {
+            //   Navigator.push(context,
+            //       MaterialPageRoute(builder: (context) => const CatalogList()));
+            // }),
           ],
         )
       ],

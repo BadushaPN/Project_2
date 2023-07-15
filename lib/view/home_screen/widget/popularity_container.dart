@@ -33,6 +33,7 @@ class PopularityContainer extends StatelessWidget {
             (index) => PriorityCard(
               size: size,
               popularitys: popularitys[index],
+              indeX: index,
             ),
           )
         ],

@@ -1,4 +1,4 @@
-import 'dart:io';
+// import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:project2/model/popularity/popularity.dart';
@@ -6,6 +6,8 @@ import 'package:project2/utils/color.dart';
 import 'package:project2/view/cart_screen/widgets/cart_list.dart';
 import 'package:project2/view/cart_screen/widgets/total_continue.dart';
 import 'package:project2/view/home_screen/widget/popularity_card.dart';
+import 'package:project2/view/location_screen.dart/location_screen.dart';
+import 'package:project2/view/payment_screen/payment_screen.dart';
 import 'package:project2/view/widgets/large_text.dart';
 import 'package:project2/view/widgets/location_text_and_icon.dart';
 
@@ -37,7 +39,13 @@ class CartScreen extends StatelessWidget {
                     ),
                     LocationTextAndIcon(
                       custom: size.width / 3,
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => LocationSelectionPage()),
+                        );
+                      },
                       size: size,
                     ),
                   ],
@@ -47,7 +55,10 @@ class CartScreen extends StatelessWidget {
           ),
           CartList(size: size),
           const Spacer(),
-          TotalAndContinue(size: size)
+          TotalAndContinue(
+              size: size,
+              onTap: () => Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => PaymentScreen())))
         ],
       ),
     );
