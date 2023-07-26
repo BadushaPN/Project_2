@@ -1,13 +1,11 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:project2/utils/color.dart';
-import 'package:project2/view/home_screen/home_screen.dart';
-import 'package:project2/view/login_screen/login_screen.dart';
-import 'package:project2/view/splash_screen.dart';
+import 'package:project2/view/login_screen%20copy/login_screen.dart';
 
-import 'view/signup_screen/signup_screen.dart';
-import 'view/widgets/bottom_navigation_bar.dart';
-
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -23,7 +21,7 @@ class MyApp extends StatelessWidget {
           scaffoldBackgroundColor: myTheme),
       title: "FlowerBea",
       debugShowCheckedModeBanner: false,
-      home: BottomNavigatoionBar(),
+      home: LoginPage(),
     );
   }
 }

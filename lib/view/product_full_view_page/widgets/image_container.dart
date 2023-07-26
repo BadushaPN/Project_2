@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:project2/utils/color.dart';
 
 class ImageContainer extends StatelessWidget {
-  const ImageContainer({
-    super.key,
-    required this.size,
-  });
+  String image;
+  ImageContainer({super.key, required this.size, required this.image});
 
   final Size size;
 

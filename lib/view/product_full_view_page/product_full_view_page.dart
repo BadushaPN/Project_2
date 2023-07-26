@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:project2/model/popularity/popularity.dart';
-import 'package:project2/utils/color.dart';
 import 'package:project2/view/product_full_view_page/widgets/add_button.dart';
 import 'package:project2/view/product_full_view_page/widgets/quantity.dart';
 import 'package:project2/view/widgets/large_text.dart';
@@ -30,7 +28,10 @@ class ProductFullViewPage extends StatelessWidget {
                     Navigator.pop(context);
                   },
                 ),
-                ImageContainer(size: size),
+                ImageContainer(
+                  size: size,
+                  image: data['image'],
+                ),
                 SizedBox(
                   height: size.width / 18,
                 ),

@@ -1,10 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:project2/model/home_catalog/home_catalog.dart';
-import 'package:project2/model/offer_banner/offer_banner.dart';
-import 'package:project2/model/popularity/popularity.dart';
-import 'package:project2/utils/color.dart';
 import 'package:project2/view/home_screen/widget/home_catalogs.dart';
-import 'package:project2/view/home_screen/widget/indicator.dart';
 import 'package:project2/view/home_screen/widget/my_carousiler.dart';
 import 'package:project2/view/home_screen/widget/popularity.dart';
 import 'package:project2/view/location_screen.dart/location_screen.dart';
@@ -13,23 +10,23 @@ import 'package:project2/view/profile_screen/profile_screen.dart';
 import 'package:project2/view/widgets/large_text.dart';
 import 'package:project2/view/widgets/location_text_and_icon.dart';
 import 'package:project2/view/widgets/search_icon.dart';
-import 'package:project2/view/widgets/text_buttons.dart';
 
-import 'widget/offer_items.dart';
 import 'widget/profile_home_screen.dart';
 import 'widget/profile_name.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final CollectionReference flower =
+      FirebaseFirestore.instance.collection("Flowers");
   @override
   Widget build(BuildContext context) {
-    int _isSelected = 0;
+    // int _isSelected = 0;
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: SafeArea(
@@ -72,6 +69,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           LocationTextAndIcon(
                             size: size,
                             onPressed: () {
+                              // checkFirebaseConnection();
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
@@ -86,25 +84,26 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   // offerBanner(size, _isSelected),
                   MyCarousel(),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: SizedBox(
+                  SizedBox(
                       width: size.width,
                       height: 100,
-                      child: GridView.count(
-                        crossAxisSpacing: 10,
-                        crossAxisCount: catalogs.length,
-                        childAspectRatio: size.width / (size.height / 1),
-                        children: [
-                          ...List.generate(
-                            catalogs.length,
-                            (index) => HomeCatalogs(
-                                size: size, catalog: catalogs[index]),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: catalogs.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
+                            child: SizedBox(
+                              width: 55,
+                              height: 100,
+                              child: HomeCatalogs(
+                                size: size,
+                                catalog: catalogs[index],
+                              ),
+                            ),
+                          );
+                        },
+                      )),
                   Popularitys(
                     size: size,
                   )

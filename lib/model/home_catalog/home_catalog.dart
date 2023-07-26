@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class HomeCatalog {
@@ -17,3 +18,5 @@ List<HomeCatalog> catalogs = [
   HomeCatalog(5, "lib/assests/catalogs/accessories.jpeg", "ACCESSORIES",
       color: Colors.green),
 ];
+final CollectionReference flower =
+    FirebaseFirestore.instance.collection("Flowers");

@@ -23,25 +23,30 @@ class HomeCatalogs extends StatelessWidget {
             MaterialPageRoute(builder: (context) => CatalogList()),
           );
         },
-        child: Column(
-          children: [
-            Container(
-              height: 60,
-              decoration: BoxDecoration(
-                color: catalog.color,
-                image: DecorationImage(
-                    image: AssetImage(catalog.image), fit: BoxFit.cover),
+        child: Container(
+          height: 50,
+          width: 50,
+          child: Column(
+            children: [
+              Container(
+                height: 50,
+                width: 50,
+                decoration: BoxDecoration(
+                  color: catalog.color,
+                  image: DecorationImage(
+                      image: AssetImage(catalog.image), fit: BoxFit.cover),
+                ),
               ),
-            ),
-            SizedBox(
-              height: size.height / 300,
-            ),
-            LargeText(
-              text: catalog.title.toUpperCase(),
-              fontSize: 10,
-              letterSpacing: 0,
-            )
-          ],
+              // SizedBox(
+              //   height: size.height / 300,
+              // ),
+              LargeText(
+                text: catalog.title.toUpperCase(),
+                fontSize: 10,
+                letterSpacing: 0,
+              )
+            ],
+          ),
         ),
       ),
     );

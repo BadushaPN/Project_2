@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:project2/utils/images.dart';
 
 class StoreCollections {
@@ -53,3 +52,6 @@ List<StoreCollections> allCollections = [
   // StoreCollections(false, false,
   //     id: 1, name: names[4], catalog: names[18], rate: "80"),
 ];
+List whishList = [];
+List addrressList = [];
+List cartList = [];

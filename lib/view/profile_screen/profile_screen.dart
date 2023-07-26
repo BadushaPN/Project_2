@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project2/utils/color.dart';
-import 'package:project2/view/login_screen/login_screen.dart';
+import 'package:project2/view/login_screen%20copy/login_screen.dart';
 import 'package:project2/view/profile_screen/widgets/profile_list.dart';
-import 'package:project2/view/signup_screen/signup_screen.dart';
 import 'package:project2/view/user_details_screen/user_details_screen.dart';
 import 'package:project2/view/widgets/back_button.dart';
 import 'package:project2/view/widgets/large_text.dart';
@@ -73,7 +72,7 @@ class ProfileScreen extends StatelessWidget {
               onTap: () {
                 Navigator.pushAndRemoveUntil(
                     context,
-                    MaterialPageRoute(builder: (context) => LoginScreen()),
+                    MaterialPageRoute(builder: (context) => LoginPage()),
                     (route) => false);
               },
               text: 'Logout',

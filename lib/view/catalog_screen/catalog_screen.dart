@@ -1,15 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:project2/model/home_catalog/home_catalog.dart';
-import 'package:project2/model/popularity/popularity.dart';
-import 'package:project2/model/store_collections/store_collections.dart';
-import 'package:project2/utils/color.dart';
 import 'package:project2/view/catalog_screen/widgets/filterchips.dart';
 import 'package:project2/view/catalog_screen/widgets/head_bar.dart';
-import 'package:project2/view/home_screen/widget/home_catalogs.dart';
 import 'package:project2/view/home_screen/widget/popularity_card.dart';
-import 'package:project2/view/widgets/back_button.dart';
-import 'package:project2/view/widgets/large_text.dart';
-import 'package:project2/view/widgets/search_icon.dart';
 
 class CatalogScreen extends StatefulWidget {
   CatalogScreen({super.key});
@@ -19,6 +12,9 @@ class CatalogScreen extends StatefulWidget {
 }
 
 class _CatalogScreenState extends State<CatalogScreen> {
+  final CollectionReference flower =
+      FirebaseFirestore.instance.collection("Flowers");
+  String searchQuery = '';
   TextEditingController textEditingController = TextEditingController();
   FocusNode _focusNode = FocusNode();
 
@@ -68,6 +64,11 @@ class _CatalogScreenState extends State<CatalogScreen> {
                         horizontal: 16,
                       ),
                       child: TextField(
+                        onChanged: (val) {
+                          setState(() {
+                            searchQuery = val;
+                          });
+                        },
                         focusNode: _focusNode,
                         controller: textEditingController,
                         decoration: InputDecoration(
@@ -78,23 +79,36 @@ class _CatalogScreenState extends State<CatalogScreen> {
                       ),
                     ),
                   ),
-                  GridView.count(
-                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                    physics: const ScrollPhysics(),
-                    crossAxisCount: 2,
-                    mainAxisSpacing: 10,
-                    crossAxisSpacing: 10,
-                    scrollDirection: Axis.vertical,
-                    shrinkWrap: true,
-                    children: List.generate(popularitys.length, (index) {
-                      return PriorityCard(
-                        size: size,
-                        popularitys: popularitys[index],
-                        custom: size.height / 12,
-                        indeX: index,
-                      );
-                    }),
-                  )
+                  StreamBuilder<QuerySnapshot>(
+                      stream: flower.snapshots(),
+                      builder:
+                          (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                        List<dynamic> documentData = snapshot.data!.docs;
+                        // final filteredData = snapshot.data!.docs.where((doc) {
+                        //   final productName =
+                        //       doc['name'].toString().toLowerCase();
+                        //   return productName
+                        //       .contains(searchQuery.toLowerCase());
+                        // }).toList();
+                        return GridView.count(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 10),
+                          physics: const ScrollPhysics(),
+                          crossAxisCount: 2,
+                          mainAxisSpacing: 10,
+                          crossAxisSpacing: 10,
+                          scrollDirection: Axis.vertical,
+                          shrinkWrap: true,
+                          children: List.generate(documentData.length, (index) {
+                            return PriorityCard(
+                              size: size,
+                              popularitys: documentData[index],
+                              custom: size.height / 12,
+                              indeX: index,
+                            );
+                          }),
+                        );
+                      })
                 ]),
               )
             ],

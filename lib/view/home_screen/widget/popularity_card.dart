@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:project2/model/popularity/popularity.dart';
 import 'package:project2/utils/color.dart';
 import 'package:project2/view/product_full_view_page/product_full_view_page.dart';
 import 'package:project2/view/widgets/large_text.dart';
@@ -29,7 +28,8 @@ class _PriorityCardState extends State<PriorityCard> {
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => ProductFullViewPage(data: popularitys)));
+                builder: (context) =>
+                    ProductFullViewPage(data: widget.popularitys)));
       },
       child: Card(
         child: Column(
@@ -37,13 +37,14 @@ class _PriorityCardState extends State<PriorityCard> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Container(
-                height: widget.custom ?? widget.size.width / 3,
-                decoration: BoxDecoration(
+                  height: widget.custom ?? widget.size.width / 3,
+                  decoration: BoxDecoration(
                     image: DecorationImage(
-                        image: AssetImage(widget.popularitys.image),
+                        image: NetworkImage(widget.popularitys['image']),
+                        // image: AssetImage(
+                        //     'lib/assests/Screenshot 2023-06-16 212447.png'),
                         fit: BoxFit.cover),
-                    borderRadius: BorderRadius.circular(5)),
-              ),
+                  )),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -53,7 +54,7 @@ class _PriorityCardState extends State<PriorityCard> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       LargeText(
-                        text: widget.popularitys.title.toUpperCase(),
+                        text: widget.popularitys['name'].toUpperCase(),
                         fontSize: 15,
                         letterSpacing: 0,
                         fontWeight: FontWeight.w700,
@@ -63,9 +64,11 @@ class _PriorityCardState extends State<PriorityCard> {
                         onTap: () {},
                         child: Icon(
                           Icons.favorite,
-                          color: widget.popularitys.isSelected == true
-                              ? Colors.redAccent
-                              : light,
+                          color:
+                              // widget.popularitys.isSelected == true
+                              //     ? Colors.redAccent
+                              //     : .
+                              light,
                         ),
                       )
                     ],
@@ -74,7 +77,7 @@ class _PriorityCardState extends State<PriorityCard> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       LargeText(
-                        text: widget.popularitys.rate,
+                        text: widget.popularitys['product price'] + '₹',
                         fontSize: 15,
                         letterSpacing: 0,
                       ),
@@ -82,9 +85,11 @@ class _PriorityCardState extends State<PriorityCard> {
                         onTap: () {},
                         child: Icon(
                           Icons.shopping_cart,
-                          color: widget.popularitys.isSelected == true
-                              ? dark
-                              : light,
+                          color:
+                              //  widget.popularitys.isSelected == true
+                              //     ? dark
+                              //     :.
+                              light,
                         ),
                       )
                     ],
