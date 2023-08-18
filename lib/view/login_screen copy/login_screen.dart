@@ -107,7 +107,7 @@ class _LoginPageState extends State<LoginPage> {
                       child: Row(
                         children: [
                           const Text(
-                            "91+",
+                            "+91",
                             style: TextStyle(fontSize: 20),
                           ),
                           const SizedBox(
@@ -115,6 +115,7 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                           Expanded(
                             child: TextFormField(
+                              style: const TextStyle(fontSize: 20),
                               onChanged: (value) {
                                 phone = value;
                               },

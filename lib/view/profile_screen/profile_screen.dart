@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:project2/utils/color.dart';
 import 'package:project2/view/login_screen%20copy/login_screen.dart';
@@ -12,6 +13,7 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final FirebaseAuth auth = FirebaseAuth.instance;
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: SafeArea(
@@ -70,6 +72,7 @@ class ProfileScreen extends StatelessWidget {
             ProfileLists(
               size: size,
               onTap: () {
+                auth.signOut();
                 Navigator.pushAndRemoveUntil(
                     context,
                     MaterialPageRoute(builder: (context) => LoginPage()),
