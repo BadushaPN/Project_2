@@ -24,7 +24,6 @@ class _OTPPageState extends State<OTPPage> {
   String smsCode = "";
   bool userExist = false;
   void getPhoneNumber() async {
-    FirebaseAuth auth = FirebaseAuth.instance;
     User? user = auth.currentUser;
 
     if (user != null) {
