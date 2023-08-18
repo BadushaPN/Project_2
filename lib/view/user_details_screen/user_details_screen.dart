@@ -1,16 +1,48 @@
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:project2/model/store_collections/store_collections.dart';
 import 'package:project2/utils/color.dart';
 import 'package:project2/view/widgets/custom_button.dart';
 import 'package:project2/view/widgets/large_text.dart';
 import 'package:project2/view/widgets/my_textformfields.dart';
+
+import '../login_screen copy/login_screen.dart';
 
 class UserProfileScreen extends StatefulWidget {
   const UserProfileScreen({super.key});
 
   @override
   State<UserProfileScreen> createState() => _UserProfileScreenState();
+}
+
+void createNewDocumentWithCustomID() async {
+  try {
+    FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+    CollectionReference collectionRef = firestore.collection('users');
+
+    String customDocumentId = phone;
+
+    DocumentSnapshot documentSnapshot =
+        await collectionRef.doc(customDocumentId).get();
+
+    if (documentSnapshot.exists) {
+      print('Document with ID $customDocumentId already exists.');
+      return;
+    } else {
+      await collectionRef.doc(customDocumentId).set({
+        'address': addrressList,
+        'whishList': whishList,
+        'cart': cartList,
+      });
+
+      print('New document with custom ID added to the collection!');
+    }
+  } catch (e) {
+    print('Error creating document: $e');
+  }
 }
 
 class _UserProfileScreenState extends State<UserProfileScreen> {
@@ -87,9 +119,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                           keyboardType: TextInputType.number,
                           decoration: const InputDecoration.collapsed(
                               hintText: "Mobile Number",
-                              hintStyle: TextStyle(
-                                fontSize: 20,
-                              ))),
+                              hintStyle: TextStyle(fontSize: 20))),
                     ),
                   ),
                 ),

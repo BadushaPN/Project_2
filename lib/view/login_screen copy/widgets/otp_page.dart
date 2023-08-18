@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:pinput/pinput.dart';
 import 'package:project2/view/login_screen%20copy/login_screen.dart';
-import 'package:project2/view/profile_screen/profile_screen.dart';
 import 'package:project2/view/widgets/large_text.dart';
 
 import '../../../utils/color.dart';
+import '../../user_details_screen/user_details_screen.dart';
 import '../../widgets/bottom_navigation_bar.dart';
 import '../../widgets/text_buttons.dart';
 
@@ -19,36 +19,19 @@ class OTPPage extends StatefulWidget {
 }
 
 class _OTPPageState extends State<OTPPage> {
-  TextEditingController _otpController = TextEditingController();
+  // TextEditingController _otpController = TextEditingController();
   final FirebaseAuth auth = FirebaseAuth.instance;
   String smsCode = "";
   bool userExist = false;
-  void getPhoneNumber() async {
-    User? user = auth.currentUser;
-
-    if (user != null) {
-      // The phone number may be stored in the user's metadata
-      String? phoneNumber = user.phoneNumber;
-      final ref = await FirebaseFirestore.instance
-          .collection('users')
-          .doc(phoneNumber)
-          .get();
-      if (ref.exists) {
-        setState(() {
-          userExist = true;
-        });
-        print('Phone number: $phoneNumber');
-      } else {
-        print('Phone number not available');
-      }
-    } else {
-      print('User is not signed in');
-    }
+  @override
+  void initState() {
+    createNewDocumentWithCustomID();
+    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    const borderColor = Color.fromRGBO(23, 171, 144, 0.4);
+    // const borderColor = Color.fromRGBO(23, 171, 144, 0.4);
     final defaultPinTheme = PinTheme(
       width: 56,
       height: 56,
@@ -158,7 +141,7 @@ class _OTPPageState extends State<OTPPage> {
                         MaterialPageRoute(
                             builder: (context) => userExist
                                 ? BottomNavigatoionBar()
-                                : ProfileScreen()),
+                                : UserProfileScreen()),
                         (route) => false);
                   } catch (e) {}
                 },
@@ -168,5 +151,28 @@ class _OTPPageState extends State<OTPPage> {
         ),
       ),
     );
+  }
+
+  void getPhoneNumber() async {
+    User? user = auth.currentUser;
+
+    if (user != null) {
+      // The phone number may be stored in the user's metadata
+      String? phoneNumber = user.phoneNumber;
+      final ref = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(phoneNumber)
+          .get();
+      if (ref.exists) {
+        setState(() {
+          userExist = true;
+        });
+        print('Phone number: $phoneNumber');
+      } else {
+        print('Phone number not available');
+      }
+    } else {
+      print('User is not signed in');
+    }
   }
 }
