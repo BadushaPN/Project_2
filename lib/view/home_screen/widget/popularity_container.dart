@@ -20,6 +20,9 @@ class PopularityContainer extends StatelessWidget {
       child: StreamBuilder<QuerySnapshot>(
           stream: flower.snapshots(),
           builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+            if (snapshot.data == null) {
+              return CircularProgressIndicator();
+            }
             List<dynamic> documentData = snapshot.data!.docs;
 
             return GridView.count(

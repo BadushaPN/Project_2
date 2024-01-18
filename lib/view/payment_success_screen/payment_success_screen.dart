@@ -33,11 +33,11 @@ class PaymentSuccessScreen extends StatelessWidget {
               ),
               onPressed: () {
                 // Navigate to the home screen or any other screen
-                Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(
-                        builder: (conntext) => BottomNavigatoionBar()),
-                    (route) => false);
+                // Navigator.pushAndRemoveUntil(
+                //     context,
+                //     MaterialPageRoute(
+                //         builder: (conntext) => BottomNavigatoionBar()),
+                //     (route) => false);
               },
             ),
           ],

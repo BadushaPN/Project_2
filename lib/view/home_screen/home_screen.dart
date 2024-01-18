@@ -45,22 +45,18 @@ class _HomeScreenState extends State<HomeScreen> {
                         children: [
                           Row(
                             children: [
-                              SizedBox(
-                                width: size.width / 18,
-                              ),
+                              SizedBox(width: size.width / 18),
                               ProfileHomeScreen(
                                 onTap: () => Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => ProfileScreen())),
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => ProfileScreen(),
+                                  ),
+                                ),
                               ),
-                              SizedBox(
-                                width: size.width / 34,
-                              ),
+                              SizedBox(width: size.width / 34),
                               const ProfileName(),
-                              SizedBox(
-                                width: size.width / 2.6,
-                              ),
+                              SizedBox(width: size.width / 2.6),
                               SearchIcon(
                                 onPressed: () {},
                               )
