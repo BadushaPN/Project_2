@@ -4,7 +4,7 @@ import 'package:project2/utils/color.dart';
 class MyTextformFields extends StatelessWidget {
   int? line;
   double? padding;
-
+  var validator;
   TextEditingController controller;
   String hintText;
   MyTextformFields(
@@ -12,7 +12,8 @@ class MyTextformFields extends StatelessWidget {
       required this.controller,
       required this.hintText,
       this.padding,
-      this.line});
+      this.line,
+      this.validator});
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +36,7 @@ class MyTextformFields extends StatelessWidget {
                   hintStyle: const TextStyle(
                     fontSize: 20,
                   )),
+              validator: validator,
             ),
           ),
         ),
