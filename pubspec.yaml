@@ -53,6 +53,7 @@ dependencies:
   shared_preferences: ^2.2.0
   pinput: ^3.0.0
   sms_autofill: ^2.3.0
+  get: ^4.6.6
   # gif: ^0.4.2
 dev_dependencies:
   flutter_test:
