@@ -48,20 +48,6 @@ class _LoginPageState extends State<LoginPage> {
   //       (Route<dynamic> route) => false);
   // }
 
-  void _login() {
-    // String username = _usernameController.text;
-    // String password = _passwordController.text;
-    // if (username == 'username' && password == 'password') {
-    //   _saveCredentials();
-    // }
-    // Perform login validation here
-
-    // Save login credentials if "Remember Me" is checked
-    // if (_rememberMe) {
-    //   _saveCredentials();
-    // }
-  }
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
