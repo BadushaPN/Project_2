@@ -60,7 +60,7 @@ class _CatalogScreenState extends State<CatalogScreen> {
                         color: Colors.grey[200],
                         borderRadius: BorderRadius.circular(30),
                       ),
-                      padding: EdgeInsets.symmetric(
+                      padding: const EdgeInsets.symmetric(
                         horizontal: 16,
                       ),
                       child: TextField(
@@ -71,7 +71,7 @@ class _CatalogScreenState extends State<CatalogScreen> {
                         },
                         focusNode: _focusNode,
                         controller: textEditingController,
-                        decoration: InputDecoration(
+                        decoration:const InputDecoration(
                           hintText: 'Search',
                           border: InputBorder.none,
                           icon: Icon(Icons.search),
