@@ -9,6 +9,7 @@ import 'widgets/image_container.dart';
 import 'widgets/name_and_rate.dart';
 import 'widgets/total_rate.dart';
 
+// ignore: must_be_immutable
 class ProductFullViewPage extends StatelessWidget {
   var data;
   ProductFullViewPage({super.key, required this.data});
